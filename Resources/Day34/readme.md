@@ -68,6 +68,7 @@ sudo apt-mark hold kubelet kubectl
 ```
 sudo systemctl daemon-reload
 sudo systemctl restart kubelet
+sudo systemctl status kubelet
 ```
 - Uncordon the node
 ```
@@ -77,7 +78,13 @@ kubectl uncordon <node-to-uncordon>
 - To check kubernetes Manifests
 ```
 cd /etc/kubernetes/manifests/
-```  
+```
+- If you're unsure whether you're using the community-owned package repositories or the legacy package repositories
+
+```
+pager /etc/apt/sources.list.d/kubernetes.list
+sudo vim /etc/apt/sources.list.d/kubernetes.list
+```
 
 ### Run on Worker 
 Follow the same process as above or follow this doc [link](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/upgrading-linux-nodes/) and if you want to Change The Kubernetes Package Repository the follow this doc [link](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/change-package-repository/)
