@@ -126,14 +126,16 @@ kubectl version --client
 
 8) Configure `crictl` to work with `containerd`
 
-`sudo crictl config runtime-endpoint unix:///var/run/containerd/containerd.sock`
+```
+sudo crictl config runtime-endpoint unix:///var/run/containerd/containerd.sock
+```
 
 9) initialize control plane
 
 ```
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=172.31.89.68 --node-name master
 ```
->Note: Copy the copy to the notepad that was generated after the init command completion, we will use that later.
+>Note: Copy the output to the notepad that was generated after the init command completion, we will use that later.
 
 10) Prepare `kubeconfig`
 
@@ -164,6 +166,9 @@ sudo kubeadm join 172.31.71.210:6443 --token xxxxx --discovery-token-ca-cert-has
 
 ```
 kubeadm token create --print-join-command
+```
+``` If you want to change the labels of worker-node 
+kubectl label node <node-name> node-role.kubernetes.io/worker=worker
 ```
 
 ## Validation
