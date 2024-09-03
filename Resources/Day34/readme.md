@@ -35,12 +35,12 @@ sudo apt-cache madison kubeadm
   
 ```
 sudo apt-mark unhold kubeadm && \
-sudo apt-get update && sudo apt-get install -y kubeadm='1.30.2-1.1’ && \
+sudo apt-get update && sudo apt-get install -y kubeadm='1.30.2-1.1' && \
 sudo apt-mark hold kubeadm
 ```
 
 - `sudo kubeadm upgrade plan`
-  This command will show you the version available to be upgraded
+  This command will show you the versions available to be upgraded
   
 
 
@@ -50,6 +50,8 @@ sudo apt-mark hold kubeadm
 - k get nodes (shows kubelet version)
 
 - Drain the node
+
+before upgrading the kubelet and kubectl we need to drain the node.
 ```
 kubectl drain <node-to-drain> --ignore-daemonsets
 ```
@@ -58,7 +60,7 @@ kubectl drain <node-to-drain> --ignore-daemonsets
 
 ```
 sudo apt-mark unhold kubelet kubectl && \
-sudo apt-get update && sudo apt-get install -y kubelet='1.30.2-1.1' kubectl='1.30.2-1.1' && \
+sudo apt-get update && sudo apt-get install -y kubelet='1.30.2-1.1' kubectl='1.30.4-1.1' && \
 sudo apt-mark hold kubelet kubectl
 ```
 
