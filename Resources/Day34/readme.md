@@ -18,15 +18,15 @@
 
 ### Upgrade steps
 
-1) Upgrade master node
-2) Ipgrade worker node
+1) Upgrade master nodes
+2) Upgrade worker nodes
 
 >Note: when master is down, mangement operation are down, pods continue to run
 
 ### Run on master
 
 # Find the latest 1.31 version in the list.
-# It should look like 1.31.x-*, where x is the latest patch.
+## It should look like 1.31.x-*, where x is the latest patch.
 ```
 sudo apt update
 sudo apt-cache madison kubeadm
@@ -74,8 +74,8 @@ kubectl uncordon <node-to-uncordon>
 
 
 ### Run on Worker 
-Follow the same process as above or follow the below doc
-https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/upgrading-linux-nodes/
+Follow the same process as above or follow this doc [link](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/upgrading-linux-nodes/) and if you want to Change The Kubernetes Package Repository the follow this doc [link](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/change-package-repository/)
+
 
 
 
