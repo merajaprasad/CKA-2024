@@ -74,6 +74,8 @@ sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables ne
 
 4) Install container runtime
 
+  A container runtime is a software component responsible for running containers on a host operating system. It is a crucial part of the container ecosystem, providing the necessary environment and services for containers to operate.
+
 ```
 curl -LO https://github.com/containerd/containerd/releases/download/v1.7.14/containerd-1.7.14-linux-amd64.tar.gz
 sudo tar Cxzvf /usr/local containerd-1.7.14-linux-amd64.tar.gz
@@ -92,12 +94,16 @@ systemctl status containerd
 
 5) Install runc
 
+`runc` A low-level container runtime that creates, runs and manage containers according to the Open Container Initiative (OCI) specification. It is used by other runtimes like Docker and containerd.
+
 ```
 curl -LO https://github.com/opencontainers/runc/releases/download/v1.1.12/runc.amd64
 sudo install -m 755 runc.amd64 /usr/local/sbin/runc
 ```
 
 6) install cni plugin
+
+CNI plugins are a foundational component of Kubernetes networking.CNI plugins handle the creation, configuration, and management of network interfaces for containers within a cluster, enabling communication between pods, services, and with the outside world within a Kubernetes cluster.
 
 ```
 curl -LO https://github.com/containernetworking/plugins/releases/download/v1.5.0/cni-plugins-linux-amd64-v1.5.0.tgz
@@ -126,14 +132,18 @@ kubectl version --client
 
 8) Configure `crictl` to work with `containerd`
 
-`sudo crictl config runtime-endpoint unix:///var/run/containerd/containerd.sock`
+crictl is a command-line tool for interacting with container runtimes that implement the Kubernetes Container Runtime Interface (CRI). It is primarily used to troubleshoot and manage containers at the node level in a Kubernetes environment.
+
+```
+sudo crictl config runtime-endpoint unix:///var/run/containerd/containerd.sock
+```
 
 9) initialize control plane
 
 ```
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=172.31.89.68 --node-name master
 ```
->Note: Copy the copy to the notepad that was generated after the init command completion, we will use that later.
+>Note: copy the Outpot to the notepad that was generated after the init command completion, we will use that later.
 
 10) Prepare `kubeconfig`
 
@@ -142,7 +152,9 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
-11) Install calico 
+11) Install calico
+
+Calico is an open-source networking and network security solution for containers and Kubernetes that is well-suited for modern cloud-native applications. it provide scalable, high-performance, and secure networking in Kubernetes environments.
 
 ```bash
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/tigera-operator.yaml
