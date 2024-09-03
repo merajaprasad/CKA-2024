@@ -129,7 +129,7 @@ kubectl version --client
 ```
 sudo crictl config runtime-endpoint unix:///var/run/containerd/containerd.sock
 ```
-## Run below commands on Master Node only
+### Run below commands on Master Node only
 
 9) initialize control plane
 
@@ -168,7 +168,7 @@ sudo kubeadm join 172.31.71.210:6443 --token xxxxx --discovery-token-ca-cert-has
 ```
 kubeadm token create --print-join-command
 ```
-- If you want to change the labels of worker-node
+- If you want to change the labels of worker-node, you can execute below command on master node.
 
 ```
 kubectl label node <node-name> node-role.kubernetes.io/worker=worker
