@@ -35,7 +35,7 @@ sudo apt-cache madison kubeadm
   
 ```
 sudo apt-mark unhold kubeadm && \
-sudo apt-get update && sudo apt-get install -y kubeadm='1.30.4-1.1' && \
+sudo apt-get update && sudo apt-get install -y kubeadm='1.30.6-1.1' && \
 sudo apt-mark hold kubeadm
 ```
 
@@ -60,7 +60,7 @@ kubectl drain <node-to-drain> --ignore-daemonsets
 
 ```
 sudo apt-mark unhold kubelet kubectl && \
-sudo apt-get update && sudo apt-get install -y kubelet='1.30.4-1.1' kubectl='1.30.4-1.1' && \
+sudo apt-get update && sudo apt-get install -y kubelet='1.30.6-1.1' kubectl='1.30.6-1.1' && \
 sudo apt-mark hold kubelet kubectl
 ```
 
@@ -85,6 +85,10 @@ cd /etc/kubernetes/manifests/
 pager /etc/apt/sources.list.d/kubernetes.list
 sudo vim /etc/apt/sources.list.d/kubernetes.list
 ```
+- To Reset kubeadm, if wrongly type any command during cluster migration.
+```
+sudo kubeadm reset
+``` 
 
 ### Run on Worker 
 Follow the same process as above or follow this doc [link](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/upgrading-linux-nodes/) and if you want to Change The Kubernetes Package Repository the follow this doc [link](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/change-package-repository/)
